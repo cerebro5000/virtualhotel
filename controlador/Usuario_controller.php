@@ -1,10 +1,17 @@
 <?php 
+require_once "modelos/user.php";
 	class UsuarioController
 	{	
 		public function __construct(){}
 
 		public function index(){
+			$user = new User();
+			$user->nombre = "daniel";
+
+			require_once('vistas/header.php');
+			require_once('vistas/usuario/menu.php');
 			require_once('vistas/usuario/index.php');
+			require_once('vistas/footer.php');
 		}
 
 		public function register(){

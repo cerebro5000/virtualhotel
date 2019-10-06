@@ -1,1 +1,2 @@
-<p>Error al cargar la vista!</p>
+<body>
+<p>Bienvenido al index..!</p>

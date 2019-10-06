@@ -1,8 +1,4 @@
-<?php 
-require_once "vistas/header.php";
-?>
 <body>
-	<?php require_once "vistas/menu.php"; ?>
 	<div class="container">
 		<div class="jumbotron">
 			<div class="row">
@@ -66,7 +62,3 @@ require_once "vistas/header.php";
 			
 		</div>
 	</div>
-</body>
-<?php 
-require_once "vistas/footer.php";
- ?>

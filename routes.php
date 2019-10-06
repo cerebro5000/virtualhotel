@@ -20,8 +20,8 @@
 
 	//array con los controladores y sus respectivas acciones
 	$controllers= array(
-						'inicio'=>['inicio','contacto'],
-						'usuario'=>['index','register','update', 'delete']
+						'inicio'=>['inicio','contacto', 'registro'],
+						'usuario'=>['index','register','update', 'delete', 'preferencias']
 						);
 	//verifica que el controlador enviado desde index.php esté dentro del arreglo controllers
 	if (array_key_exists($controller, $controllers)) {
@@ -30,7 +30,7 @@
 			//llama  la función call y le pasa el controlador a llamar y la acción (método) que está dentro del controlador
 			call($controller, $action);
 		}else{
-			call('inicio', 'error');
+			call($controller, 'error');
 		}
 	}else{// le pasa el nombre del controlador y la pagina de error
 		call('inicio', 'error');
