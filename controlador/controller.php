@@ -5,10 +5,9 @@
 class Controller
 {
 	
-	function __construct(argument)
-	{
-		# code...
+	public function __construct(){
 	}
+
 	function cargarmodelo($model){
 		$url = "models/" . $model . 'model.php';
 		if (file_exists($url)) {
