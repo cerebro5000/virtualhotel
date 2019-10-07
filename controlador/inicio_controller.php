@@ -1,7 +1,9 @@
 <?php 
 require_once "modelos/inicio.php";
-
-	class InicioController
+/**
+* 
+*/
+	class InicioController extends Controller
 	{	
 		private $model;
 		public function __construct(){
@@ -17,6 +19,7 @@ require_once "modelos/inicio.php";
 		public function contactenos(){
 			require_once('vistas/inicio/contacto.php');
 		}
+
 		public function registro(){
 			require_once('vistas/header.php');
 			require_once('vistas/menu.php');
