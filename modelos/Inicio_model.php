@@ -2,13 +2,9 @@
 /**
 * 
 */
-class User
+class InicioModel
 {
-	
 	public function __construct(){
 	}
-	public $nombre;
-	public $id;
-
 }
  ?>

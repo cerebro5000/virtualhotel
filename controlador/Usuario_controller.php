@@ -1,18 +1,18 @@
 <?php 
-require_once "modelos/user.php";
 
-	class UsuarioController
+	class UsuarioController extends Controller
 	{	
 		public $user;
-
+		public $session;
 		public function __construct(){
-			$this->user = new User();
+			
+			$this->user = new UsuarioModel();
+			$this->session = new Session();
 		}
 
-		public function index(){
-			$user = $this->user;
-			$user->nombre = "daniel";
-
+		public function inicio(){
+			$this->session->destruirsesion();
+			print_r($_SESSION);
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
 			require_once('vistas/usuario/index.php');
@@ -26,6 +26,11 @@ require_once "modelos/user.php";
 			require_once('vistas/usuario/menu.php');
 			require_once('vistas/usuario/preferencias.php');
 			require_once('vistas/footer.php');
+		}
+
+		public function login()
+		{
+			
 		}
 
 		public function register(){

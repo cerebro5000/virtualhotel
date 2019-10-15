@@ -5,23 +5,18 @@
 		//importa el controlador desde la carpeta Controllers
 		require_once('controlador/' . $controller . '_controller.php');
 		//crea el controlador
-		switch($controller){
-			case 'inicio':
-				$controller = new InicioController();
-				break;
-			case 'usuario':
-				$controller= new UsuarioController();
-				break; 
-
-		}
+		$controller.= 'controller';
+		$controller = new $controller();
+		
 		//llama a la acción del controlador
-		$controller->{$action }();
+		$controller->{$action}();
 	}
 
 	//array con los controladores y sus respectivas acciones
 	$controllers= array(
 						'inicio'=>['inicio','contacto', 'registro'],
-						'usuario'=>['index','register','update', 'delete', 'preferencias']
+						'usuario'=>['inicio','login','register','update', 'delete', 'preferencias'],
+						'hotel'=>['inicio']
 						);
 	//verifica que el controlador enviado desde index.php esté dentro del arreglo controllers
 	if (array_key_exists($controller, $controllers)) {

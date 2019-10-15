@@ -1,13 +1,11 @@
 <?php 
-require_once "modelos/inicio.php";
 /**
 * 
 */
 	class InicioController extends Controller
 	{	
-		private $model;
 		public function __construct(){
-			$this->model = new Inicio();
+			$this->model = new InicioModel();
 		}
 		public function inicio(){
 			require_once('vistas/header.php');
@@ -16,8 +14,11 @@ require_once "modelos/inicio.php";
 			require_once('vistas/footer.php');
 		}
 
-		public function contactenos(){
+		public function contacto(){
+			require_once('vistas/header.php');
+			require_once('vistas/menu.php');
 			require_once('vistas/inicio/contacto.php');
+			require_once('vistas/footer.php');
 		}
 
 		public function registro(){

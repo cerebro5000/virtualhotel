@@ -1,7 +1,6 @@
 <?php
-require_once "config.php";
-require_once "modelos/conexion.php";
-require_once "controlador/controller.php";
+require_once "system/config.php";
+require_once "system/autoload.php";
 
 session_start();
 	// la variable controller guarda el nombre del controlador y action guarda la acción por ejemplo registrar 
