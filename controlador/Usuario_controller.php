@@ -4,8 +4,8 @@
 	{	
 		public $user;
 		public $session;
+		
 		public function __construct(){
-			
 			$this->user = new UsuarioModel();
 			$this->session = new Session();
 		}
@@ -30,6 +30,15 @@
 
 		public function login()
 		{
+			if(!empty($_POST)){
+				print_r($_POST);
+				$this->user->nombre = "generico";
+			}else
+				$this->user->nombre = "generico";
+			require_once('vistas/header.php');
+			require_once('vistas/usuario/menu.php');
+			require_once('vistas/usuario/preferencias.php');
+			require_once('vistas/footer.php');
 			
 		}
 
