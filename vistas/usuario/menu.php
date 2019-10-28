@@ -15,7 +15,32 @@
 		<div class="input-group-append">
 			<img src="img/fondo feo.jpg" style="width: 4em;">
 			<label class="input-group-text"><?php echo $user->nombre; ?></label>
-			<a href="?" class="btn btn-outline-secondary">Cerrar Sesion</a>
+			<button id="logout" class="btn btn-outline-secondary">Cerrar Sesion</button>
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#logout').click(function(event){
+			event.preventDefault();
+			$.post('index.php?controller=usuario&action=logout',
+			{
+				usuario : $('#usuario').val(),
+				contrasena : $('#contrasena').val()
+			},function(dato){
+				switch(dato){
+					case 'true':
+						window.location.href = 'index.php?controller=inicio&action=inicio';
+					break;
+					case 'usuario incorrecto':
+						alert('usuario o contraseña erronea verifique su informacion');
+					break;
+					case 'false':
+						alert('usuario o contraseña erronea verifique su informacion');
+					break;
+				}
+			});
+		});
+	});
+</script>

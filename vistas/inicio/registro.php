@@ -6,11 +6,11 @@
 			<form action="#" method="POST">
 				<div class="form-group">
 					<label for="exampleInputEmail1">Usuario</label>
-					<input type="email" class="form-control" id="usuario">
+					<input type="email" class="form-control" id="usuarioR">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Contraseña</label>
-					<input type="email" class="form-control" id="pass">
+					<input type="email" class="form-control" id="passR">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Repetir contraseña</label>
@@ -33,7 +33,7 @@
 					<input type="email" class="form-control" id="email">
 				</div>
 			
-				<input type="submit" class="btn btn-primary" value="Registrar">
+				<a href="javascript:goRegistro()" class="btn btn-primary">Registrar</a>
 				</form>
 			</div>
 			
@@ -43,3 +43,22 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	function goRegistro() {
+		var connect, form, response, result, user, pass, sesion;
+		user = $('#usuarioR').val();
+		pass = $('#passR').val();
+		nombre = $('#nombre').val();
+		apellido = $('#apellido').val();
+		alert(user +" "+ pass);
+		if($('#passR').val() == $('#passR').val()){
+			form = 'user=' + user + '&pass=' + pass;
+			
+			connect = new XMLHttpRequest();
+			connect.open('POST','/index.php?controller=usuario&action=inicio',true);
+			connect.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			location.replace('index.php?controller=usuario&action=login');
+			connect.send(form);
+		}	
+	}
+</script>

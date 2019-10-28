@@ -14,21 +14,21 @@
 						<img src="img/fondo feo.jpg" class="d-block w-100" alt="...">
 						<div class="carousel-caption d-none d-md-block">
 						<h5>Primer pestaña</h5>
-						<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+						<p>imagen agregada para para la primera</p>
 						</div>
 						</div>
 						<div class="carousel-item">
 						<img src="img/fondo feo.jpg" class="d-block w-100" alt="...">
 						<div class="carousel-caption d-none d-md-block">
 						<h5>Segunda pestaña</h5>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+						<p>texto para la segunda pestaña</p>
 						</div>
 						</div>
 						<div class="carousel-item">
 						<img src="img/fondo feo.jpg" class="d-block w-100" alt="...">
 						<div class="carousel-caption d-none d-md-block">
 						<h5>Tercera pestaña</h5>
-						<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+						<p>texto para otra pestaña mas</p>
 						</div>
 						</div>
 						</div>
@@ -44,17 +44,12 @@
 				</div>
 			</div>
 			<div class="col-lg-6">
-				<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-				<label for="inputEmail" class="sr-only">Email address</label>
+				<h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
+				<label for="inputEmail" class="sr-only">Usuario</label>
 				<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-				<label for="inputPassword" class="sr-only">Password</label>
+				<label for="inputPassword" class="sr-only">Contraseña</label>
 				<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-				<div class="checkbox mb-3">
-					<label>
-						<input type="checkbox" value="remember-me"> Remember me
-					</label>
-				</div>
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
 				</div>
 		</div>
 		

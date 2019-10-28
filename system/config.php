@@ -4,7 +4,7 @@ define('URI', $_SERVER['REQUEST_URI']);
 
 //vcariables de configuracion de base de datos
 define('HOST', "localhost");
-define('DB', 'virtualholel');
+define('DB', 'virtualhotel');
 define('USER', 'root');
 define('PASSWORD', '');
 define('CHARSET', 'UTF-8');
