@@ -45,13 +45,42 @@
 			</div>
 			<div class="col-lg-6">
 				<h1 class="h3 mb-3 font-weight-normal">Iniciar Sesion</h1>
-				<label for="inputEmail" class="sr-only">Usuario</label>
-				<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-				<label for="inputPassword" class="sr-only">Contraseña</label>
-				<input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-				<button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+				<label for="usuario2" class="sr-only">Usuario</label>
+				<input type="text" id="usuario2" class="form-control" placeholder="Usuario" required="" autofocus="">
+				<label for="contrasena2" class="sr-only">Contraseña</label>
+				<input type="Password" id="contrasena2" class="form-control" placeholder="Contraseña" required="">
+				<button id="ingreso2" class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
 				</div>
 		</div>
 		
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#ingreso2').click(function(event){
+			if ($('#usuario2').val() == "" && $('#contrasena2').val() == "") {
+				alert('campos vacios');
+			}
+			else{
+				event.preventDefault();
+				$.post('index.php?controller=usuario&action=login',
+				{
+					usuario : $('#usuario2').val(),
+					contrasena : $('#contrasena2').val()
+				},function(dato){
+					switch(dato){
+						case 'true':
+							window.location.href = 'index.php?controller=usuario&action=inicio';
+						break;
+						case 'usuario incorrecto':
+							alert('usuario o contraseña erronea verifique su informacion');
+						break;
+						case 'false':
+							alert('usuario o contraseña erronea verifique su informacion');
+						break;
+					}
+				});
+			}
+		});
+	});
+</script>
