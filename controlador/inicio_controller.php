@@ -27,6 +27,7 @@
 			require_once('vistas/inicio/registro.php');
 			require_once('vistas/footer.php');
 		}
+		
 		public function error(){
 			require_once('vistas/inicio/error.php');
 		} 

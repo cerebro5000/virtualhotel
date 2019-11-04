@@ -3,11 +3,11 @@
 		<div class="input-group-prepend">
 			<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">menu</button>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="?controller=usuario&action=preferencias">Mi Cuenta</a>
+				<a class="dropdown-item" href="?controller=usuario&action=cuenta">Mi Cuenta</a>
 				<a class="dropdown-item" href="#">Mis Hoteles</a>
 				<a class="dropdown-item" href="#">Reservaciones</a>
 				<div role="separator" class="dropdown-divider"></div>
-				<a class="dropdown-item" href="#">Registra un Hotel</a>
+				<a class="dropdown-item" href="?controller=usuario&action=registrahotel">Registra un Hotel</a>
 			</div>
 			<a href="?controller=usuario&action=index" class="btn btn-outline-secondary">Inicio</a>
 		</div>
