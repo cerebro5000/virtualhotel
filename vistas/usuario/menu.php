@@ -9,7 +9,7 @@
 				<div role="separator" class="dropdown-divider"></div>
 				<a class="dropdown-item" href="?controller=usuario&action=registrahotel">Registra un Hotel</a>
 			</div>
-			<a href="?controller=usuario&action=index" class="btn btn-outline-secondary">Inicio</a>
+			<a href="?controller=usuario&action=inicio" class="btn btn-outline-secondary">Inicio</a>
 		</div>
 		<input type="text" class="form-control" aria-label="Text input with dropdown button" disabled="true">
 		<div class="input-group-append">

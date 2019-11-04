@@ -24,7 +24,7 @@
 						<div class="alert error">
 							<?php echo $errores; ?>
 						</div>
-					<?php elseif(($enviar)):?>
+					<?php elseif($enviar):?>
 						<div class="alert success">
 							<p>Enviado correctamente</p>
 						</div>

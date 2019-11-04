@@ -4,7 +4,7 @@ require_once "system/autoload.php";
 
 //si la session se encuentra por que exista en el servidor iniciara automaticamente la
 //sesion sino iniciara en el inicio de la web
-if(isset($_SESSION)){
+if(isset($_SESSION['session'])){
 	$controller = 'usuario';
 	$action = 'inicio';
 }

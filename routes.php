@@ -16,6 +16,7 @@
 	$controllers= array(
 						'inicio'=>['inicio','contacto', 'registro'],
 						'usuario'=>['inicio', 'login', 'logout','register','update', 'delete', 'preferencias', 'cuenta', 'registrahotel'],
+						'usuario'=>['inicio', 'login', 'logout','register','update', 'delete', 'preferencias', 'validar'],
 						'hotel'=>['inicio']
 						);
 	//verifica que el controlador enviado desde index.php esté dentro del arreglo controllers
