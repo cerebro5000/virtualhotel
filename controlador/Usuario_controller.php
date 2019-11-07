@@ -50,12 +50,11 @@
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
 			require_once('vistas/usuario/micuenta.php');
-			require_once('vistas/usuario/registrahotel.php');
 			require_once('vistas/footer.php');
 			
 		}	
 		
-				public function registrahotel()
+		public function registrahotel()
 		{
 			if (!isset($_SESSION['session'])) {
 				header("Location: index.php?controller=inicio&action=inicio");

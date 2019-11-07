@@ -20,7 +20,6 @@
 			require_once('vistas/inicio/contacto.php');
 			require_once('vistas/footer.php');
 		}
-
 		public function registro(){
 			require_once('vistas/header.php');
 			require_once('vistas/menu.php');
