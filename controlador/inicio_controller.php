@@ -7,6 +7,7 @@
 		public function __construct(){
 			$this->model = new InicioModel();
 		}
+		
 		public function inicio(){
 			require_once('vistas/header.php');
 			require_once('vistas/menu.php');

@@ -17,6 +17,10 @@ class Session
 		return $_SESSION;
 	}
 
+	public function addtosession($nombre, $valor){
+		$_SESSION[$nombre] = $valor;
+	}
+
 	public function setsession($value)
 	{
 		$_SESSION['session'] = $value;

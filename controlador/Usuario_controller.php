@@ -62,7 +62,22 @@
 			}
 			$this->model = $_SESSION['session'];
 			$user = $this->model;
-			
+			print_r($_SESSION);
+			$paso1 = 'active';
+			$paso2 = '';
+			$paso3 = '';
+			if(isset($_SESSION['hotel'])){
+				$paso1 = '';
+				$paso2 = 'active';
+				$paso3 = '';
+				if(isset($_SESSION['habitacion'])){
+					$paso1 = '';
+					$paso2 = '';
+					$paso3 = 'active';
+				}
+			}
+			$this->hotel = new HotelModel();
+			$variable = $this->hotel->getserviciosTotales();
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
 			require_once('vistas/usuario/registrahotel.php');
