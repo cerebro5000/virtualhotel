@@ -157,7 +157,18 @@
 							</div>
 						</div>
 					</div>
-
+					<div class="row">
+						<div class="col-xl-12">
+							<label>Imagenes del hotel</label>   <a href="#" onclick="addFieldH()">Añadir Archivo</a>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-xl-6">
+							<div id="fileshabitacion"></div>
+						</div>
+					</div>
+					
 					<label for="foto">Imagenes</label>
 					<input type="file" id="foto" name="foto">
 
@@ -313,6 +324,57 @@ addField = function () {
 
    container.appendChild(span);
 }
+
+addFieldH = function () {
+	container = d('fileshabitacion');
+	span = c('SPAN');
+	span.className = 'file';
+	span.id = 'file' + (++numero);
+
+	div = c('div');
+	div.classList = 'input-group mb-3';
+
+	div2 = c('div');
+	div2.classList = 'custom-file';
+
+	div3 = c('div');
+	div3.classList = 'input-group-append';
+
+
+
+	field = c('INPUT');   
+	field.name = 'fotoshabitacion';
+	field.type = 'file';
+	field.classList = 'custom-file-input';
+	field.onchange = function(){
+		label.innerHTML = field.files[0].name;
+	}
+
+	label = c('label');
+	label.innerHTML = '';
+	label.classList = 'custom-file-label';
+	h(label, "data-browse" ,"Buscar");
+
+
+
+	a = c('Button');
+	a.name = span.id;
+	a.classList = 'btn btn-outline-primary';
+	a.onclick = removeField;
+	a.innerHTML = ' Quitar';
+
+
+	div2.appendChild(field);
+	div2.appendChild(label);
+	div.appendChild(div2);
+	div.appendChild(div3);
+	div3.appendChild(a);
+	span.appendChild(div);
+	
+
+   container.appendChild(span);
+}
+
 removeField = function (evt) {
    lnk = f(e(evt));
    span = d(lnk.name);
