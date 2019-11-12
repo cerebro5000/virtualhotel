@@ -19,6 +19,16 @@ class HotelModel extends Model
 	public $imagen;
 	public $servicios = array();
 
+	public function validarestado($estado)
+	{
+		if ($estado !== '') {
+			if (is_numeric($estado)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public function validarcp($cp)
 	{
 		if ($cp !== '') {
@@ -116,6 +126,18 @@ class HotelModel extends Model
 		$datos = array();
 		while($row = $result->fetch_assoc()){
 			$datos[] = ['id_servicios' =>$row['id_servicios'], 'nombre' => $row['nombre']];
+		}
+		return $datos;
+	}
+
+	public function getestadostotales()
+	{
+		$coneccion = new Conexion();
+		$mysqli = $coneccion->conectar();
+		$result = $mysqli->query("SELECT * from estado");
+		$datos = array();
+		while($row = $result->fetch_assoc()){
+			$datos[] = ['id_estado' =>$row['id_estado'], 'nombre' => $row['nombre']];
 		}
 		return $datos;
 	}

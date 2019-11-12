@@ -5,15 +5,29 @@
 class HotelController extends Controller
 {
 	public $habitacion;
+
 	function __construct()
 	{
 		$this->model = new HotelModel();
 		$this->habitacion = new HabitacionModel();
 	}
 
-	public function FunctionName($value='')
+	public function back()
 	{
-		# code...
+		$session = new Session();
+		if (isset($_POST)) {
+			switch ($_POST['step']) {
+				case 1:
+					$session->unsetsesion('hotel');
+					break;
+				case 2:
+					$session->unsetsesion('habitacion');
+					break;
+			}
+			echo 'true';
+		}else{
+			echo 'false';
+		}
 	}
 	
 	public function inicio()
@@ -79,6 +93,14 @@ class HotelController extends Controller
 							$error = 8;
 						
 						break;
+					case 'estado':
+						if ($this->model->validarestado($value)) {
+							$this->model->setestado($value);
+						}
+						else
+							$error = 9;
+						
+						break;
 				}
 			}
 			if ($this->model->validarimagen($_FILES)) {
@@ -117,8 +139,9 @@ class HotelController extends Controller
 				case 8:
 					echo 'error en servicios';
 					break;
-				
-				
+				case 9:
+					echo "error en el estado";
+					break;
 				default:
 					echo "un error ha sido causado";
 					break;
@@ -126,7 +149,7 @@ class HotelController extends Controller
 		}
 	}
 	public function error(){
-
+		echo "un error acaba de ocurrir";
 	}
 }
  ?>

@@ -66,8 +66,8 @@
 								<label for="estado">Estado</label>
 								<select class="form-control" id="estado">
 									<option value="">seleccione un estado</option>
-								<?php foreach ($estado as $key => $value): ?>
-									<option value="<?php echo $value['id'] ?>"> <?php echo $value['nombre'] ?></option>
+								<?php foreach ($estados as $key => $value): ?>
+									<option value="<?php echo $value['id_estado'] ?>"> <?php echo $value['nombre'] ?></option>
 								<?php endforeach ?>
 								</select>
 							</div>
@@ -115,8 +115,11 @@
 							<div id="fileshotel"></div>
 						</div>
 					</div>
-					
-					<button class="btn btn-primary next-step" id="continuestep1">Continuar</button>
+					<div class="row">
+						<div class="col-xl-12">
+							<button class="btn btn-primary" id="continuestep1">Continuar</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		<?php if ($paso2 == 'active'): ?>
@@ -130,7 +133,12 @@
 						<div class="col-xl-6">
 							<div class="form-group">
 								<label for="tipo">Tipo de habitacion</label>
-								<input type="text" class="form-control" id="tipo">
+								<select id="tipohabitacion" class="form-control">
+									<option value="">seleccione una opcion</option>
+									<?php foreach ($tipos as $key => $value): ?>
+										<option value="<?php echo $value['id_tipo'] ?>"><?php echo $value['descripcion'] ?></option>
+									<?php endforeach ?>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -168,18 +176,8 @@
 							<div id="fileshabitacion"></div>
 						</div>
 					</div>
-					
-					<label for="foto">Imagenes</label>
-					<input type="file" id="foto" name="foto">
-
-					<label for="texto">Descripcion:</label>
-					<textarea name="texto" id="texto" placeholder="Ingresa una descripcion"></textarea>
-
-					<input type="submit" class="submit" value="Subir foto">
-					<div class="step-actions">
-						<button class="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="someFunction21">CONTINUE</button>
-					</div>
-
+					<button class="btn btn-primary" id="backstep1">Regresar</button>
+					<button class="btn btn-primary" id="continuestep2">Continuar</button>
 				</div>
 			</div>
 		<?php if ($paso3 == 'active'): ?>
@@ -224,6 +222,7 @@
 				datosform.append("nombre", $('#nombre').val() );
 				datosform.append("direccion", $('#direccion').val() );
 				datosform.append("colonia", $('#colonia').val() );
+				datosform.append("estado" , $('#estado').val() );
 				datosform.append("cp", $('#cp').val() );
 				datosform.append("telefono", $('#telefono').val() );
 				datosform.append("email", $('#email').val() );
@@ -251,6 +250,24 @@
 					}
 				});
 			}
+		});
+		$('#backstep1').click(function(event){
+			event.preventDefault();
+			$.ajax({
+					url: 'index.php?controller=hotel&action=back',
+					data: {step: 1},
+					type: 'POST',
+					success: function(dato){
+						switch(dato){
+							case 'true':
+								window.location.href = 'index?controller=usuario&action=registrahotel';
+							break;
+							default:
+								alert(dato);
+							break;
+						}
+					}
+				});
 		});
 	});
 </script>
