@@ -129,8 +129,9 @@
 					<div class="row">
 						<div class="col-xl-6">
 							<div class="form-group">
-								<label for="tipo">Tipo de habitacion</label>
-								<input type="text" class="form-control" id="tipo">
+								<select class="form-control" id="tipo">
+									<option value="">Tipo de habitacion</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -140,13 +141,6 @@
 							<div class="form-group">
 								<label for="password-horizontal">Tipo de camas</label>
 								<input type="tipo" class="form-control" id="cama">
-							</div>
-						</div>
-
-						<div class="col-xl-2">
-							<div class="form-group">
-								<label for="password-horizontal">Numero de camas</label>
-								<input type="text" class="form-control" id="numerocama">
 							</div>
 						</div>
 
