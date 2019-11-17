@@ -127,12 +127,10 @@
 		<?php else: ?>
 			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 		<?php endif ?>
-<<<<<<< HEAD
 				<h6>Informacion habitacion</h6>
 				<div class="row">
 					<div class="col-xl-12">
 						<button class="btn btn-outline-primary " id="agregarhab" onclick="addListh()">Agregar Habitacion</button>
-=======
 				<div class="jumbotron">
 					<h6>Informacion habitacion</h6>
 					<div class="row">
@@ -176,7 +174,6 @@
 						<div class="col-xl-6">
 							<div id="fileshabitacion"></div>
 						</div>
->>>>>>> 5064b7381a1f96e10719e76cc6e3b35b0c6d544d
 					</div>
 				</div>
 				<div id="listahab"></div>
