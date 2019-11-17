@@ -4,6 +4,7 @@
 	{	
 		public $session;
 		public $hotel;
+		public $habitacion;
 
 		public function __construct(){
 			
@@ -78,6 +79,11 @@
 			}
 			$this->hotel = new HotelModel();
 			$variable = $this->hotel->getserviciosTotales();
+			$estados = $this->hotel->getestadostotales();
+
+			$this->habitacion = new HabitacionModel();
+			$tipos = $this->habitacion->gettipohabitaciontotal();
+
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
 			require_once('vistas/usuario/registrahotel.php');

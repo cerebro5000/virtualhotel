@@ -21,5 +21,17 @@ class HabitacionModel extends Model
 		}
 		return $datos;
 	}
+
+	public function gettipohabitaciontotal()
+	{
+		$coneccion = new Conexion();
+		$mysqli = $coneccion->conectar();
+		$result = $mysqli->query("SELECT * from tipo_habitacion");
+		$datos = array();
+		while($row = $result->fetch_assoc()){
+			$datos[] = ['id_tipo' =>$row['id_tipo'], 'descripcion' => $row['descripcion']];
+		}
+		return $datos;
+	}
 }
  ?>

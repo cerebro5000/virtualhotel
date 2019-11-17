@@ -17,6 +17,11 @@ class Session
 		return $_SESSION;
 	}
 
+	public function unsetsesion($nombre)
+	{
+		unset($_SESSION[$nombre]);
+	}
+
 	public function addtosession($nombre, $valor){
 		$_SESSION[$nombre] = $valor;
 	}
