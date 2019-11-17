@@ -127,6 +127,12 @@
 		<?php else: ?>
 			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 		<?php endif ?>
+<<<<<<< HEAD
+				<h6>Informacion habitacion</h6>
+				<div class="row">
+					<div class="col-xl-12">
+						<button class="btn btn-outline-primary " id="agregarhab" onclick="addListh()">Agregar Habitacion</button>
+=======
 				<div class="jumbotron">
 					<h6>Informacion habitacion</h6>
 					<div class="row">
@@ -170,7 +176,11 @@
 						<div class="col-xl-6">
 							<div id="fileshabitacion"></div>
 						</div>
+>>>>>>> 5064b7381a1f96e10719e76cc6e3b35b0c6d544d
 					</div>
+				</div>
+				<div id="listahab"></div>
+				<div class="jumbotron">
 					<button class="btn btn-primary" id="backstep1">Regresar</button>
 					<button class="btn btn-primary" id="continuestep2">Continuar</button>
 				</div>
@@ -249,25 +259,48 @@
 		$('#backstep1').click(function(event){
 			event.preventDefault();
 			$.ajax({
-					url: 'index.php?controller=hotel&action=back',
-					data: {step: 1},
-					type: 'POST',
-					success: function(dato){
-						switch(dato){
-							case 'true':
-								window.location.href = 'index?controller=usuario&action=registrahotel';
-							break;
-							default:
-								alert(dato);
-							break;
-						}
+				url: 'index.php?controller=hotel&action=back',
+				data: {step: 1},
+				type: 'POST',
+				success: function(dato){
+					switch(dato){
+						case 'true':
+							window.location.href = 'index?controller=usuario&action=registrahotel';
+						break;
+						default:
+							alert(dato);
+						break;
 					}
-				});
+				}
+			});
+		});
+		$('#backstep2').click(function(event){
+			event.preventDefault();
+			$.ajax({
+				url: 'index.php?controller=hotel&action=back',
+				data: {step: 2},
+				type: 'POST',
+				success: function(dato){
+					switch(dato){
+						case 'true':
+							window.location.href = 'index?controller=usuario&action=registrahotel';
+						break;
+						default:
+							alert(dato);
+						break;
+					}
+				}
+			});
+		});
+		$('#continuestep2').click(function(event){
+			event.preventDefault();
+
 		});
 	});
 </script>
 <script type="text/javascript">
 var numero = 0;
+var thab = 0;
 
 // Funciones comunes
 c = function (tag) { // Crea un elemento
@@ -334,7 +367,7 @@ addField = function () {
 	span.appendChild(div);
 	
 
-   container.appendChild(span);
+	container.appendChild(span);
 }
 
 addFieldH = function () {
@@ -388,8 +421,163 @@ addFieldH = function () {
 }
 
 removeField = function (evt) {
-   lnk = f(e(evt));
-   span = d(lnk.name);
-   span.parentNode.removeChild(span);
+	lnk = f(e(evt));
+	span = d(lnk.name);
+	span.parentNode.removeChild(span);
 }
+
+addListh = function () {
+	container = d('listahab');
+	span = c('SPAN');
+	span.className = 'hab';
+	span.id = 'hab' + (++thab);
+
+	hr1 = c('hr');
+	hr2 = c('hr');
+	br = c('br');
+	br2 = c('br');
+
+	div = c('div');
+	div.classList = 'jumbotron';
+	label1 = c('label');
+	label1.innerHTML ='Descripcion de habitacion';
+
+	div1 = c('div');
+	div1.classList = 'row';
+	div2 = c('div');
+	div2.classList = 'col-xl-12';
+	div3 = c('div');
+	div3.classList = 'col-xl-6';
+	div4 = c('div');
+	div4.classList = 'form-group';
+
+	row1 = c('div');
+	row1.classList = 'row';
+	col1 = c('div');
+	col1.classList = 'col-xl-8';
+	label3 = c('label');
+	label3.innerHTML ='Tipo de cama';
+	select2 = c('select');
+	select2.name = 'tipocama';
+	select2.classList = 'form-control';
+	op1 = c('option');
+	op1.value = ''
+	op1.innerHTML = 'seleccione una opcion';
+	select2.appendChild(op1);
+	var tipos = ["Individual", "Matrimonial", "King size", "Queen size"];
+	tipos.forEach(myfor);
+
+	col2 = c('div');
+	col2.classList = 'col-xl-2';
+	label4 = c('label');
+	label4.innerHTML = 'Numero de camas';
+	input1 = c('input');
+	input1.type = 'text';
+	input1.name = 'ncama';
+	input1.classList = 'form-control';
+	$(input1).on('input', function(){
+		 this.value = this.value.replace(/[^0-9]/g,'');
+	});
+	
+
+	col3 = c('div');
+	col3.classList = 'col-xl-2';
+	label5 = c('label');
+	label5.innerHTML = "Precio";
+	input2 = c('input');
+	input2.name = 'precio';
+	input2.type = "text";
+	input2.classList = 'form-control';
+	$(input2).on('input', function(){
+		 this.value = this.value.replace(/([^0-9])?(\.[0-9]{1}){1}([^0-9])+/,'');
+	});
+	
+
+	row2 = c('div');
+	row2.classList = 'row';
+	col4 = c('div');
+	col4.classList = 'col-xl-12';
+	label6 = c('label');
+	label6.innerHTML = 'imagenes de la habitacion';
+	qdd = c('Button');
+	qdd.name = span.id;
+	qdd.classList = 'btn btn-primary';
+	qdd.onclick = addFieldH;
+	qdd.innerHTML = 'Agregar archivos';
+
+	row3 = c('div');
+	row3.classList = 'row';
+	col5 = c('div');
+	col5.classList = 'col-xl-6';
+	fileshabitacion = c('div');
+	fileshabitacion.id = 'fileshabitacion';
+
+	label2 = c('label');
+
+	label2.innerHTML = 'Tipo de habitacion';
+	h(label2, 'for', 'tipohabitacion');
+	select1 = c('select');
+	select1.name = 'tipohabitacion';
+	select1.classList = 'form-control';
+	op = c('option');
+	op.value = ''
+	op.innerHTML = 'seleccione una opcion';
+	select1.appendChild(op);
+	<?php foreach ($tipos as $key => $value): ?>
+		op = c('option');
+		op.value = '<?php echo $value['id_tipo'] ?>';
+		op.innerHTML = '<?php echo $value['descripcion'] ?>';
+		select1.appendChild(op);
+	<?php endforeach ?>
+
+
+	a = c('Button');
+	a.name = span.id;
+	a.classList = 'btn btn-outline-primary';
+	a.onclick = removeField;
+	a.innerHTML = ' Quitar';
+
+	div2.appendChild(label1);
+	div2.appendChild(br);
+	div2.appendChild(a);
+	div2.appendChild(hr1);
+	div1.appendChild(div2);
+	div4.appendChild(label2);
+	div4.appendChild(select1);
+	div3.appendChild(div4);
+	div1.appendChild(div3);
+	div.appendChild(div1);
+
+	col1.appendChild(label3);
+	col1.appendChild(select2);
+	col2.appendChild(label4);
+	col2.appendChild(input1);
+	col3.appendChild(label5);
+	col3.appendChild(input2);
+	row1.appendChild(col1);
+	row1.appendChild(col2);
+	row1.appendChild(col3);
+	div.appendChild(row1);
+
+	col4.appendChild(hr2);
+	col4.appendChild(label6);
+	col4.appendChild(br2);
+	col4.appendChild(qdd);
+	row2.appendChild(col4);
+	div.appendChild(row2);
+
+	col5.appendChild(fileshabitacion);
+	row3.appendChild(col5);
+	div.appendChild(row3);
+	span.appendChild(div);
+
+	container.appendChild(span);
+}
+
+function myfor(item, index) {
+		op = c('option');
+		op.value = index+1;
+		op.innerHTML = item;
+		select2.appendChild(op);
+	}
 </script>

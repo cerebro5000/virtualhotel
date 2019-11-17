@@ -19,4 +19,7 @@ define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 
 //ruta de librerias
 define('LIBS', 'lib/');
+
+//ruta de archivos subidos
+define('UPLOAD', 'uploads/');
  ?>
