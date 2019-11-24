@@ -67,14 +67,23 @@
 			$paso1 = 'active';
 			$paso2 = '';
 			$paso3 = '';
+			$paso4 = '';
 			if(isset($_SESSION['hotel'])){
 				$paso1 = '';
 				$paso2 = 'active';
 				$paso3 = '';
+				$paso4 = '';
 				if(isset($_SESSION['habitacion'])){
 					$paso1 = '';
 					$paso2 = '';
 					$paso3 = 'active';
+					$paso4 = '';
+					if (isset($_SESSION['imagenes'])) {
+						$paso1 = '';
+						$paso2 = '';
+						$paso3 = '';
+						$paso4 = 'active';
+					}
 				}
 			}
 			$this->hotel = new HotelModel();
@@ -131,7 +140,6 @@
 								}
 								else{
 									$error = 1;
-									echo "usuario ya utilizado escriba otro";
 								}
 								break;
 
@@ -140,8 +148,7 @@
 									$this->model->setcontraseña($value);
 								}
 								else{
-									$error = 1;
-									echo "contraseñas diferentes";
+									$error = 2;	
 								}
 								break;
 
@@ -150,8 +157,7 @@
 									$this->model->setnombre($value);
 								}
 								else{
-									$error = 1;
-									echo "usuario invalido";
+									$error = 3;
 								}
 								break;
 
@@ -160,8 +166,7 @@
 									$this->model->setapellido($value);
 								}
 								else{
-									$error = 1;
-									echo "apellido invalido";
+									$error = 4;
 								}
 								break;
 
@@ -170,8 +175,7 @@
 									$this->model->settelefono($value);
 								}
 								else{
-									$error = 1;
-									echo "telefono muy largo";
+									$error = 5;
 								}
 								break;
 
@@ -180,25 +184,40 @@
 									$this->model->setemail($value);
 								}
 								else{
-									$error = 1;
-									echo "email incorrecto escriba uno valido";
+									$error = 6;
 								}
 								break;
 
 						}
 					}
-					if($error == 0){
-						if($this->model->guardarusuario()){
-							echo 'datos guardados';
-						}
-						else{
-							echo 'hubo un error revise los datos';
-						}
+					switch ($error) {
+						case 0:
+							if($this->model->guardarusuario()){
+								echo 'datos guardados';
+							}
+							else{
+								echo 'hubo un error revise los datos';
+							}
+							break;
+						case 1:
+							echo "usuario ya utilizado escriba otro";
+							break;
+						case 2:
+							echo "contraseñas diferentes";
+							break;
+						case 3:
+							echo "nombre invalido";
+							break;
+						case 4:
+							echo "apellido invalido";
+							break;
+						case 5:
+							echo "telefono muy largo";
+							break;
+						case 6:
+							echo "email incorrecto escriba uno valido";
+							break;
 					}
-					else{	
-						echo ' datos invalidos revise los datos por favor';
-					}
-						
 				}
 			}
 		}

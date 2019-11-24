@@ -122,10 +122,10 @@ class HotelModel extends Model
 	{
 		$coneccion = new Conexion();
 		$mysqli = $coneccion->conectar();
-		$result = $mysqli->query("SELECT * from servicios where disponibilidad_hotel = 1");
+		$result = $mysqli->query("SELECT * from servicios where disponibilidad_hot = 1");
 		$datos = array();
 		while($row = $result->fetch_assoc()){
-			$datos[] = ['id_servicios' =>$row['id_servicios'], 'nombre' => $row['nombre']];
+			$datos[] = ['id_servicio' =>$row['id_servicio'], 'nombre' => $row['nombre']];
 		}
 		return $datos;
 	}

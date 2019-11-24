@@ -177,7 +177,7 @@ CREATE TABLE `tipo_habitacion` (
 CREATE TABLE `usuarios` (
   `id_usuario` int(11) NOT NULL,
   `usuario` varchar(50) DEFAULT NULL,
-  `contraseña` varchar(50) DEFAULT NULL
+  `contrasena` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -210,7 +210,6 @@ CREATE TABLE `usuarios_reservaciones_rel` (
 -- Indices de la tabla `datos_personales`
 --
 ALTER TABLE `datos_personales`
-  ADD PRIMARY KEY (`id_usuario`),
   ADD KEY `FK_peridestado_idestado` (`id_estado`);
 
 --
@@ -309,12 +308,6 @@ ALTER TABLE `usuarios_reservaciones_rel`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
-
---
--- AUTO_INCREMENT de la tabla `datos_personales`
---
-ALTER TABLE `datos_personales`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `estado`
@@ -444,3 +437,10 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+INSERT INTO `pais` (`id_pais`, `nombre_p`) VALUES (NULL, 'Mexico');
+INSERT INTO `estado` (`id_estado`, `nombre`, `id_pais`) VALUES (NULL, 'Estado de Mexico', '1');
+INSERT INTO `estado` (`id_estado`, `nombre`, `id_pais`) VALUES (NULL, 'Jalisco', '1');
+INSERT INTO `servicios` (`id_servicio`, `nombre`, `disponibilidad_hot`, `disponibilidad_hab`) VALUES (NULL, 'alberca', b'1', ''), (NULL, 'bar', b'1', '');
+INSERT INTO `servicios` (`id_servicio`, `nombre`, `disponibilidad_hot`, `disponibilidad_hab`) VALUES (NULL, 'minibar', b'0', b'1'), (NULL, 'jacuzzi', b'0', b'1');
+INSERT INTO `tipo_habitacion` (`id_tipo`, `descripcion`) VALUES (NULL, 'Sencilla'), (NULL, 'Doble');

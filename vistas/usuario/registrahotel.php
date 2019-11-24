@@ -1,24 +1,29 @@
 <div class="container">
 	<ul class="nav nav-tabs" id="myTab" role="tablist">
-		<div class="col-xl-4">
+		<div class="col-xl-3">
 			<li class="nav-item">			
-				<label class="nav-link <?php echo $paso1; ?>" id="info-tab" role="tab" aria-controls="info" aria-selected="true">Informacion</label>
+				<label class="nav-link <?php echo $paso1; ?>" id="step1-tab" role="tab" aria-controls="step1" aria-selected="true">Informacion</label>
+			</li>
+		</div>
+		<div class="col-xl-3">
+			<li class="nav-item">
+				<label class="nav-link <?php echo $paso2; ?>" id="step2-tab" role="tab" aria-controls="step2" aria-selected="false">Agregar habitacion</label>
 			</li>
 		</div>
 		<div class="col-xl-4">
 			<li class="nav-item">
-				<label class="nav-link <?php echo $paso2; ?>" id="profile-tab" role="tab" aria-controls="profile" aria-selected="false">Agregar habitacion</label>
+				<label class="nav-link <?php echo $paso3; ?>" id="step3-tab" role="tab" aria-controls="step3" aria-selected="false">Agregar imagenes habitacionales</label>
 			</li>
 		</div>
-		<div class="col-xl-4">
+		<div class="col-xl-2">
 			<li class="nav-item">
-				<label class="nav-link <?php echo $paso3; ?>" id="contact-tab" role="tab" aria-controls="contact" aria-selected="false">Publicar</label>
+				<label class="nav-link <?php echo $paso4; ?>" id="step4-tab" role="tab" aria-controls="step4" aria-selected="false">Publicar</label>
 			</li>
 		</div>
 	</ul>
 	<div class="tab-content">
 		<?php if ($paso1 == 'active'): ?>
-			<div class="tab-pane fade show active" id="info" role="tabpanel" aria-labelledby="info-tab">
+			<div class="tab-pane fade show active" id="step1" role="tabpanel" aria-labelledby="step1-tab">
 		<?php else: ?>
 			<div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
 		<?php endif ?>
@@ -99,7 +104,7 @@
 						<div class="col-xl-12">
 							<?php foreach ($variable as $key => $value): ?>
 							<div class="form-check form-check-inline">
-								<input class="form-check-input" type="checkbox" name="servicios" value="<?php echo $value['id_servicios']; ?>">
+								<input class="form-check-input" type="checkbox" name="servicios" value="<?php echo $value['id_servicio']; ?>">
 								<label class="form-check-label"><?php echo $value['nombre']; ?></label>
 							</div>	
 							<?php endforeach ?>
@@ -123,59 +128,14 @@
 				</div>
 			</div>
 		<?php if ($paso2 == 'active'): ?>
-			<div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+			<div class="tab-pane fade show active" id="step2" role="tabpanel" aria-labelledby="step2-tab">
 		<?php else: ?>
-			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+			<div class="tab-pane fade" id="step2" role="tabpanel" aria-labelledby="step2-tab">
 		<?php endif ?>
 				<h6>Informacion habitacion</h6>
 				<div class="row">
 					<div class="col-xl-12">
 						<button class="btn btn-outline-primary " id="agregarhab" onclick="addListh()">Agregar Habitacion</button>
-				<div class="jumbotron">
-					<h6>Informacion habitacion</h6>
-					<div class="row">
-						<div class="col-xl-6">
-							<div class="form-group">
-								<select class="form-control" id="tipo">
-									<option value="">Tipo de habitacion</option>
-									<label for="tipo">Tipo de habitacion</label>
-								<select id="tipohabitacion" class="form-control">
-									<option value="">seleccione una opcion</option>
-									<?php foreach ($tipos as $key => $value): ?>
-										<option value="<?php echo $value['id_tipo'] ?>"><?php echo $value['descripcion'] ?></option>
-									<?php endforeach ?>
-								</select>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-xl-8">
-							<div class="form-group">
-								<label for="password-horizontal">Tipo de camas</label>
-								<input type="tipo" class="form-control" id="cama">
-							</div>
-						</div>
-
-						<div class="col-xl-2">
-							<div class="form-group">
-								<label for="password-horizontal">Precio</label>
-								<input type="precio" class="form-control" id="precio">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-xl-12">
-							<label>Imagenes del hotel</label>   <a href="#" onclick="addFieldH()">Añadir Archivo</a>
-						</div>
-					</div>
-					
-					<div class="row">
-						<div class="col-xl-6">
-							<div id="fileshabitacion"></div>
-						</div>
-					</div>
-				</div>
 				<div id="listahab"></div>
 				<div class="jumbotron">
 					<button class="btn btn-primary" id="backstep1">Regresar</button>
@@ -183,15 +143,14 @@
 				</div>
 			</div>
 		<?php if ($paso3 == 'active'): ?>
-			<div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+			<div class="tab-pane fade show active" id="step4" role="tabpanel" aria-labelledby="step4-tab">
 		<?php else: ?>
-			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+			<div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step4-tab">
 		<?php endif ?>
 				<div class="jumbotron">
-					<h6></h6>
-					<div class="step-actions">
-						<button class="waves-effect waves-dark btn btn-sm btn-primary next-step" data-feedback="someFunction21">CONTINUE</button>
-					</div>
+					<h6>Publicar</h6>
+					<button class="btn btn-primary" id="backstep2">Regresar</button>
+						<button class="btn btn-sm btn-primary" id="public">Publicar</button>
 				</div>
 			</div>
 		</div>
@@ -229,7 +188,7 @@
 				datosform.append("telefono", $('#telefono').val() );
 				datosform.append("email", $('#email').val() );
 				fileshotel.forEach(function(image, i) {
-					datosform.append('image_' + i, image);
+					datosform.append('image[]', image);
 				});
 				datosform.append("servicios", datos );
 
@@ -291,10 +250,111 @@
 		});
 		$('#continuestep2').click(function(event){
 			event.preventDefault();
+			var datosform = new FormData();
+			var tiposha = [];
+			var tipoca = [];
+			var numca = [];
+			var precio = [];
+			
+			var elementos = document.getElementsByName('tipohabitacion');
+			for(var i = 0 ; i < elementos.length ; i++)
+				tiposha.push(elementos[i].value);
+			elementos = document.getElementsByName('tipocama');
+			for(var i = 0 ; i < elementos.length ; i++)
+				tipoca.push(elementos[i].value);
+			elementos = document.getElementsByName('ncama');
+			for(var i = 0 ; i < elementos.length ; i++)
+				numca.push(elementos[i].value);
+			elementos = document.getElementsByName('precio');
+			for(var i = 0 ; i < elementos.length ; i++)
+				precio.push(elementos[i].value);
 
+			tiposha.forEach(function(image, i) {
+				datosform.append('tipohabitacion[]', image);
+			});
+			tipoca.forEach(function(image, i) {
+				datosform.append('tipocama[]', image);
+			});
+			numca.forEach(function(image, i) {
+				datosform.append('numcama[]', image);
+			});
+			precio.forEach(function(image, i) {
+				datosform.append('precio[]', image);
+			});
+			
+
+			$.ajax({
+				url: 'index.php?controller=habitacion&action=inicio',
+				data: datosform,
+				contentType: false,
+				cache: false,
+				processData:false,
+				type: 'POST',
+				success: function(dato){
+					switch(dato){
+						case 'true':
+							window.location.href = 'index?controller=usuario&action=registrahotel';
+						break;
+						default:
+							alert(dato);
+						break;
+					}
+				}
+			});
+
+		});
+		$('continuestep3').click(function(event){
+			event.preventDefault();
+			var datosform = new FormData();
+			var fileshabitacion = [];
+
+			elementos = document.getElementsByName('fotoshabitacion');
+			for(var i = 0 ; i < elementos.length ; i++)
+				fileshabitacion.push(elementos[i].files[0]);
+
+			fileshabitacion.forEach(function(image, i) {
+				datosform.append('image[]', image);
+			});
+			$.ajax({
+				url: 'index.php?controller=habitacion&action=imagen',
+				data: datosform,
+				contentType: false,
+				cache: false,
+				processData:false,
+				type: 'POST',
+				success: function(dato){
+					switch(dato){
+						case 'true':
+							window.location.href = 'index?controller=usuario&action=registrahotel';
+						break;
+						default:
+							alert(dato);
+						break;
+					}
+				}
+			});
+		});
+		$('#backstep3').click(function(event){
+			event.preventDefault();
+			$.ajax({
+				url: 'index.php?controller=hotel&action=back',
+				data: {step: 3},
+				type: 'POST',
+				success: function(dato){
+					switch(dato){
+						case 'true':
+							window.location.href = 'index?controller=usuario&action=registrahotel';
+						break;
+						default:
+							alert(dato);
+						break;
+					}
+				}
+			});
 		});
 	});
 </script>
+
 <script type="text/javascript">
 var numero = 0;
 var thab = 0;
@@ -368,6 +428,8 @@ addField = function () {
 }
 
 addFieldH = function () {
+	var yo = $(this).parent().parent().parent().parent().get(0);
+	alert(yo.name);
 	container = d('fileshabitacion');
 	span = c('SPAN');
 	span.className = 'file';
@@ -492,25 +554,8 @@ addListh = function () {
 
 	row2 = c('div');
 	row2.classList = 'row';
-	col4 = c('div');
-	col4.classList = 'col-xl-12';
-	label6 = c('label');
-	label6.innerHTML = 'imagenes de la habitacion';
-	qdd = c('Button');
-	qdd.name = span.id;
-	qdd.classList = 'btn btn-primary';
-	qdd.onclick = addFieldH;
-	qdd.innerHTML = 'Agregar archivos';
-
-	row3 = c('div');
-	row3.classList = 'row';
-	col5 = c('div');
-	col5.classList = 'col-xl-6';
-	fileshabitacion = c('div');
-	fileshabitacion.id = 'fileshabitacion';
-
+	
 	label2 = c('label');
-
 	label2.innerHTML = 'Tipo de habitacion';
 	h(label2, 'for', 'tipohabitacion');
 	select1 = c('select');
@@ -556,16 +601,8 @@ addListh = function () {
 	row1.appendChild(col3);
 	div.appendChild(row1);
 
-	col4.appendChild(hr2);
-	col4.appendChild(label6);
-	col4.appendChild(br2);
-	col4.appendChild(qdd);
-	row2.appendChild(col4);
-	div.appendChild(row2);
 
-	col5.appendChild(fileshabitacion);
-	row3.appendChild(col5);
-	div.appendChild(row3);
+	div.appendChild(row2);
 	span.appendChild(div);
 
 	container.appendChild(span);

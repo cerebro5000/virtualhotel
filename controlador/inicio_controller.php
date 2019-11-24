@@ -3,7 +3,8 @@
 * 
 */
 	class InicioController extends Controller
-	{	
+	{
+
 		public function __construct(){
 			$this->model = new InicioModel();
 		}

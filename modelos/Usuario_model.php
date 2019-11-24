@@ -14,6 +14,17 @@ class UsuarioModel
 	public $apellido;
 	public $telefono;
 	public $email;
+	public $estado;
+
+	public function setestado($estado)
+	{
+		$this->estado = $estado;
+	}
+
+	public function getestado($estado)
+	{
+		return $this->estado;
+	}	
 
 	public function setusuario($usuario)
 	{
@@ -79,20 +90,18 @@ class UsuarioModel
 	{
 		$conexion = new Conexion();
 		$mysqli = $conexion->conectar();
-		$sql3 = "SELECT id_usuario+1 as id from usuarios order by id_usuario desc limit 1";
-		if($result = $mysqli->query($sql3)){
+		$sql = "INSERT INTO usuarios(usuario, contrasena) VALUES ('{$this->getusuario()}','{$this->getcontraseña()}')";
+
+		if($result = $mysqli->query($sql)){
+			$sql2 = "SELECT * FROM usuarios WHERE usuario = '{$this->getusuario()}'";
+			$result = $mysqli->query($sql2);
 			$row = $result->fetch_assoc();
-			$id = $row['id'];
-			$sql1 = "INSERT INTO usuarios(id_usuario, usuario, contrasena) VALUES ({$id},'{$this->getusuario()}','{$this->getcontraseña()}')";
-			if($result = $mysqli->query($sql1)){
-				$sql2 = "INSERT INTO datos_personales(id_usuario, id_pais, nombres, apellidos, email, telefono, habilitado, fecha_creacion) VALUES ({$id},1,'{$this->getnombre()}','{$this->getapellido()}','{$this->getemail()}',{$this->gettelefono()},1,NOW())";
-				if($result = $mysqli->query($sql2)){
-					return true;
-				}
+			$id = $row['id_usuario'];
+			$sql3 = "INSERT INTO datos_personales(id_usuario, nombre, apellidos, email, telefono, habilitado, fecha_creacion) VALUES ({$id},'{$this->getnombre()}','{$this->getapellido()}','{$this->getemail()}',{$this->gettelefono()},1,NOW())";
+			if($result = $mysqli->query($sql3)){
+				return true;
 			}
 		}
-			
-		
 		return false;
 	}
 
@@ -123,10 +132,11 @@ class UsuarioModel
 		$row_cnt = $result->num_rows;
 		if($row_cnt === 1){
 			while($fila = $result->fetch_assoc()){
-				$this->nombre = $fila['nombres'];
+				$this->nombre = $fila['nombre'];
 				$this->apellido = $fila['apellidos'];
 				$this->email = $fila['email'];
 				$this->telefono = $fila['telefono'];
+				$this->estado = $fila['id_estado'];
 			}
 		}
 
@@ -187,6 +197,21 @@ class UsuarioModel
 			return true;
 		}
 		return false;
+	}
+
+	public function validarestado($estado)
+	{
+		if ($estado != '') {
+			if (is_numeric($estado)) {
+				$conexion = new Conexion();
+				$mysqli = $conexion->conectar();
+				$sql = "SELECT * FROM estado WHERE id_estado = {$estado}";
+				$result = $mysqli->query($sql);
+				if ($result->num_rows == 1) {
+					return true;
+				}
+			}
+		}
 	}
 }
  ?>
