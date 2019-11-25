@@ -5,69 +5,97 @@
 */
 class HabitacionController extends Controller
 {
-	
+	public $session;
 	function __construct()
 	{
 		$this->model = new HabitacionModel();
+		$this->session = new Session();
 	}
 
 	public function inicio()
 	{
 		if(isset($_POST)){
-			if (isset($tipohabitacion) && isset($tipocama)  && isset($numcama) && isset($precio)) {
-				$error = 0;
+			if (isset($_POST['tipohabitacion']) && isset($_POST['tipocama'])  && isset($_POST['numcama']) && isset($_POST['precio'])) {
+				$error = array('tipo' => 0, 'lugar' => 0);
+
 				foreach ($_POST as $key => $value) {
 					switch ($key) {
 						case 'tipohabitacion':
-							if ($this->model->validartipohabitacion()) {
-								$this->model->settipohabitacion();
-							}
-							else{
-								error = 1;
+							for ($i=0; $i < count($value) ; $i++) { 
+								if ($this->model->validartipo_habitacion($value[$i])) {
+									$this->model->settipo_habitacion($value[$i]);
+								}
+								else{
+									$error = array('tipo' => 1, 'lugar' => $i+1);
+								}
 							}
 							break;
 						case 'tipocama':
-							if ($this->model->validartipocama()) {
-								$this->model->settipocama();
-							}else{
-								$error = 2;
+							for ($i=0; $i < count($value) ; $i++) { 
+								if ($this->model->validartipo_cama($value[$i])) {
+									$this->model->settipo_cama($value[$i]);
+								}else{
+									$error = array('tipo' => 2, 'lugar' => $i+1);
+								}
 							}
 							break;
 						case 'numcama':
-							if ($this->model->validarnumcama()) {
-								$this->model->setnumcama();
-							}else{
-								$error = 3;
+							for ($i=0; $i < count($value) ; $i++) { 
+								if ($this->model->validarnum_cama($value[$i])) {
+									$this->model->setnum_cama($value[$i]);
+								}else{
+									$error = array('tipo' => 3, 'lugar' => $i+1);
+								}
 							}
 							break;
 						case 'precio':
-							if ($this->model->validarprecio()) {
-								$this->model->setprecio();
-							}else{
-								$error = 4;
+							for ($i=0; $i < count($value) ; $i++) { 
+								if ($this->model->validarprecio($value[$i])) {
+									$this->model->setprecio($value[$i]);
+								}else{
+									$error = array('tipo' => 4, 'lugar' => $i+1);
+								}
 							}
 							break;
 					}
 				}
-				if (isset($_POST['image'])) {
-					$this->model->setimage();
-				}
-				
-				switch ($error) {
+
+				switch ($error['tipo']) {
+					case 0:
+						$this->session->addtosession('habitacion', $this->model);
+						echo "true";
+						break;
 					case 1:
-						echo "verifique el tipo de habitacion";
+						echo "verifique el tipo de habitacion en la habitacion No.{$error['lugar']}";
 						break;
 					case 2:
-						echo "verifique el tipo de cama";
+						echo "verifique el tipo de cama en la habitacion No.{$error['lugar']}";
 						break;
 					case 3:
-						echo "verifique el numero de camas";
+						echo "verifique el numero de camas en la habitacion No.{$error['lugar']}";
 						break;
 					case 4:
-						echo "verifique precio";
+						echo "verifique precio en la habitacion No.{$error['lugar']}";
 						break;
 				}
 			}
+		}
+	}
+
+	public function imagen()
+	{
+		$actual = $this->session->getSession();
+		$this->model = $actual['habitacion'];
+		if ($_FILES != '') {
+			if ($this->model->validarimagen($_FILES)) {
+				$this->model->setimagen($_FILES);
+				$this->session->addtosession('habitacion',$this->model);
+				echo 'true';
+			}
+			
+		}
+		else{
+			echo 'false';
 		}
 	}
 

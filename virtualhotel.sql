@@ -438,6 +438,8 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
+ALTER TABLE `habitaciones` ADD `num_cama` INT(10) NOT NULL AFTER `tipo_habitacion`, ADD `precio` DOUBLE NOT NULL AFTER `num_cama`;
+
 INSERT INTO `pais` (`id_pais`, `nombre_p`) VALUES (NULL, 'Mexico');
 INSERT INTO `estado` (`id_estado`, `nombre`, `id_pais`) VALUES (NULL, 'Estado de Mexico', '1');
 INSERT INTO `estado` (`id_estado`, `nombre`, `id_pais`) VALUES (NULL, 'Jalisco', '1');

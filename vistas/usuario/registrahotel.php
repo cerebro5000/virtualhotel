@@ -136,21 +136,47 @@
 				<div class="row">
 					<div class="col-xl-12">
 						<button class="btn btn-outline-primary " id="agregarhab" onclick="addListh()">Agregar Habitacion</button>
-				<div id="listahab"></div>
-				<div class="jumbotron">
-					<button class="btn btn-primary" id="backstep1">Regresar</button>
-					<button class="btn btn-primary" id="continuestep2">Continuar</button>
+						<div id="listahab"></div>
+						<div class="jumbotron">
+							<button class="btn btn-primary" id="backstep1">Regresar</button>
+							<button class="btn btn-primary" id="continuestep2">Continuar</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		<?php if ($paso3 == 'active'): ?>
+			<div class="tab-pane fade show active" id="step3" role="tabpanel" aria-labelledby="step3-tab">
+		<?php else: ?>
+			<div class="tab-pane fade" id="step3" role="tabpanel" aria-labelledby="step3-tab">
+		<?php endif ?>
+				<div class="jumbotron">
+					<h6>Imagenes</h6>
+					<div class="row">
+						<div class="col-xl-12">
+							<button class="btn btn-outline-primary " id="agregarfoto" onclick="addFieldH()">Argegar imagen</button>
+							<div id="fileshabitacion"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-2">
+							<button class="btn btn-primary" id="backstep2">Regresar</button>
+						</div>
+						<div class="col-xl-2">
+							<button class="btn btn-primary" id="continuestep3">Continuar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<?php if ($paso4 == 'active'): ?>
 			<div class="tab-pane fade show active" id="step4" role="tabpanel" aria-labelledby="step4-tab">
 		<?php else: ?>
 			<div class="tab-pane fade" id="step4" role="tabpanel" aria-labelledby="step4-tab">
 		<?php endif ?>
 				<div class="jumbotron">
 					<h6>Publicar</h6>
-					<button class="btn btn-primary" id="backstep2">Regresar</button>
-						<button class="btn btn-sm btn-primary" id="public">Publicar</button>
+					<button class="btn btn-primary" id="backstep3">Regresar</button>
+					<button class="btn btn-primary" id="continuestep4">Publicar</button>
 				</div>
 			</div>
 		</div>
@@ -188,7 +214,7 @@
 				datosform.append("telefono", $('#telefono').val() );
 				datosform.append("email", $('#email').val() );
 				fileshotel.forEach(function(image, i) {
-					datosform.append('image[]', image);
+					datosform.append('image_'+i, image);
 				});
 				datosform.append("servicios", datos );
 
@@ -303,7 +329,7 @@
 			});
 
 		});
-		$('continuestep3').click(function(event){
+		$('#continuestep3').click(function(event){
 			event.preventDefault();
 			var datosform = new FormData();
 			var fileshabitacion = [];
@@ -313,7 +339,7 @@
 				fileshabitacion.push(elementos[i].files[0]);
 
 			fileshabitacion.forEach(function(image, i) {
-				datosform.append('image[]', image);
+				datosform.append('image_'+ i, image);
 			});
 			$.ajax({
 				url: 'index.php?controller=habitacion&action=imagen',
@@ -344,6 +370,23 @@
 					switch(dato){
 						case 'true':
 							window.location.href = 'index?controller=usuario&action=registrahotel';
+						break;
+						default:
+							alert(dato);
+						break;
+					}
+				}
+			});
+		});
+		$('#continuestep4').click(function(event){
+			event.preventDefault();
+			$.ajax({
+				url: 'index.php?controller=hotel&action=publicar',
+				type: 'POST',
+				success: function(dato){
+					switch(dato){
+						case 'true':
+							window.location.href = 'index?controller=usuario&action=mishoteles';
 						break;
 						default:
 							alert(dato);
@@ -399,7 +442,7 @@ addField = function () {
 	field.type = 'file';
 	field.classList = 'custom-file-input';
 	field.onchange = function(){
-		label.innerHTML = field.files[0].name;
+		$(this).parent().children('label').get(0).innerHTML = field.files[0].name
 	}
 
 	label = c('label');
@@ -428,8 +471,6 @@ addField = function () {
 }
 
 addFieldH = function () {
-	var yo = $(this).parent().parent().parent().parent().get(0);
-	alert(yo.name);
 	container = d('fileshabitacion');
 	span = c('SPAN');
 	span.className = 'file';

@@ -8,7 +8,6 @@ class HotelModel extends Model
 	{
 	}
 
-	public $id;
 	public $nombre;
 	public $direccion;
 	public $colonia;
@@ -127,6 +126,7 @@ class HotelModel extends Model
 		while($row = $result->fetch_assoc()){
 			$datos[] = ['id_servicio' =>$row['id_servicio'], 'nombre' => $row['nombre']];
 		}
+		$mysqli->close();
 		return $datos;
 	}
 
@@ -139,12 +139,8 @@ class HotelModel extends Model
 		while($row = $result->fetch_assoc()){
 			$datos[] = ['id_estado' =>$row['id_estado'], 'nombre' => $row['nombre']];
 		}
+		$mysqli->close();
 		return $datos;
-	}
-
-	public function getid()
-	{
-		return $this->id;
 	}
 
 	public function getnombre()
@@ -178,7 +174,7 @@ class HotelModel extends Model
 	}
 	public function getservicios()
 	{
-		return $servicios;
+		return $this->servicios;
 	}
 
 	public function setnombre($nombre)
@@ -220,14 +216,6 @@ class HotelModel extends Model
 			$this->servicios[] = $servicios;
 		}
 	}
-	public function setid()
-	{
-		$coneccion = new Conexion();
-		$mysqli = $coneccion->conectar();
-		$result= $mysqli->query("SELECT id_hotel+1 FROM hotel order by id_hotel desc limit 1");
-		$id = $result->fetch_assoc();
-		$this->id = $id;
-	}
 
 	public function getimage()
 	{
@@ -244,10 +232,48 @@ class HotelModel extends Model
 	public function guardarimagen()
 	{
 		foreach ($this->imagen as $key => $value) {
-			$ruta = "uploads/" . $this->imagen[$key]['name'];
+			$ruta = UPLOADHOTEL . $this->imagen[$key]['name'];
 			move_uploaded_file($this->imagen[$key]['tmp_name'], $ruta);
 		}
 		
+	}
+
+	public function getid()
+	{
+		$conexion = new Conexion();
+		$mysqli = $conexion->conectar();
+		$result = $mysqli->query("SELECT * FROM hotel where nombre = '{$this->getnombre()}' and direccion = '{$this->getdireccion()}'");
+		$row = $result->fetch_assoc();
+		$mysqli->close();
+		return $row['id_hotel'];
+	}
+
+	public function guardarhotel()
+	{
+		$conexion = new Conexion();
+		$mysqli = $conexion->conectar();
+		$sql = "INSERT INTO hotel (nombre, direccion, email, telefono, id_estado) VALUES ('{$this->getnombre()}', '{$this->getdireccion()}', '{$this->getemail()}', '{$this->gettelefono()}', '{$this->getestado()}')";
+		if ($mysqli->query($sql)) {
+			$id = $this->getid();
+			$error = 0;
+			foreach ($this->getservicios() as $key => $value) {
+				$sqlservicio = "INSERT INTO hotel_servicios_rel (id_hotel, id_servicio) values ('{$id}','{$value}')";
+				if ($mysqli->query($sqlservicio)) {
+				}else{
+					$error = 1;
+				}
+			}
+			foreach ($this->imagen as $key => $value) {
+				$sqlimagen = "INSERT INTO imagenes_hotel ( id_hotel, ruta_imagen) values ('{$id}','".UPLOADHOTEL."{$value['name']}')";
+				if ($mysqli->query($sqlimagen)) {
+				}else{
+					$error = 2;
+				}
+			}
+		}
+		$mysqli->close();
+		return $error;
+
 	}
 }
  ?>

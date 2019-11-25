@@ -5,24 +5,31 @@
 class HotelController extends Controller
 {
 	public $habitacion;
+	public $session;
 
 	function __construct()
 	{
 		$this->model = new HotelModel();
 		$this->habitacion = new HabitacionModel();
+		$this->session = new Session();
 	}
 
 	public function back()
 	{
-		$session = new Session();
+		
 		if (isset($_POST)) {
 			switch ($_POST['step']) {
 				case 1:
-					$session->unsetsesion('hotel');
+					$this->session->unsetsesion('hotel');
 					break;
 				case 2:
-					$session->unsetsesion('habitacion');
+					$this->session->unsetsesion('habitacion');
 					break;
+				case 3:
+					$this->habitacion = $this->session->getsession()['habitacion'];
+					$this->habitacion->imagen = null;
+					$this->session->addtosession('habitacion', $this->habitacion);
+				break;
 			}
 			echo 'true';
 		}else{
@@ -32,7 +39,7 @@ class HotelController extends Controller
 	
 	public function inicio()
 	{
-		$session = new Session();
+		$this->session = new Session();
 		if (isset($_POST)) {
 			$error = 0;
 			foreach ($_POST as $key => $value) {
@@ -111,8 +118,7 @@ class HotelController extends Controller
 
 			switch ($error) {
 				case 0:
-					$this->model->setid();
-					$session->addtosession('hotel', $this->model);
+					$this->session->addtosession('hotel', $this->model);
 					echo 'true';
 					break;
 				case 1:
@@ -147,6 +153,26 @@ class HotelController extends Controller
 					break;
 			}
 		}
+	}
+
+	public function publicar()
+	{
+		$this->model = $this->session->getsession()['hotel'];
+		$this->habitacion = $this->session->getsession()['habitacion'];
+		$errorhot = $this->model->guardarhotel();
+		$errorhab = $this->habitacion->guardarHabitaciones($this->model->getid());
+		if ($errorhot !== 0 && $errorhab !== 0) {
+			json_encode(array('hotel' => $errorhot, 'habitacion' => $errorhab));
+		}
+		else{
+			$this->session->unsetsesion('hotel');
+			$this->session->unsetsesion('habitacion');
+			echo 'true';
+		}
+		
+
+
+		
 	}
 	public function error(){
 		echo "un error acaba de ocurrir";

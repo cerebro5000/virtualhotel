@@ -78,7 +78,7 @@
 					$paso2 = '';
 					$paso3 = 'active';
 					$paso4 = '';
-					if (isset($_SESSION['imagenes'])) {
+					if (isset($_SESSION['habitacion']->imagen)) {
 						$paso1 = '';
 						$paso2 = '';
 						$paso3 = '';
@@ -222,6 +222,18 @@
 			}
 		}
 
+		public function mishoteles()
+		{
+			if (!isset($_SESSION['session'])) {
+				header("Location: index.php?controller=inicio&action=inicio");
+				exit();
+			}
+			$this->model = $_SESSION['session'];
+			$user = $this->model;
+			require_once('vistas/header.php');
+			require_once('vistas/usuario/menu.php');
+			require_once('vistas/footer.php');
+		}
 		public function update(){
 			echo 'update desde UsuarioConroller';
 

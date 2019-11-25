@@ -21,5 +21,6 @@ define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 define('LIBS', 'lib/');
 
 //ruta de archivos subidos
-define('UPLOAD', 'uploads/');
+define('UPLOADHOTEL', 'uploads/hotel/');
+define('UPLOADHABI', 'uploads/habitaciones/');
  ?>
