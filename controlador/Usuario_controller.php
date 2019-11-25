@@ -77,7 +77,7 @@
 					$paso2 = '';
 					$paso3 = 'active';
 					$paso4 = '';
-					if (isset($_SESSION['habitacion']->imagen)) {
+					if ($_SESSION['habitacion']->imagen !== null) {
 						$paso1 = '';
 						$paso2 = '';
 						$paso3 = '';

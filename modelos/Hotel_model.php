@@ -16,7 +16,7 @@ class HotelModel extends Model
 	public $telefono;
 	public $estado;
 	public $imagen;
-	public $servicios = array();
+	public $servicios;
 
 	public function validarestado($estado)
 	{

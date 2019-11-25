@@ -228,7 +228,7 @@
 					success: function(dato){
 						switch(dato){
 							case 'true':
-								window.location.href = 'index?controller=usuario&action=registrahotel';
+								window.location.href = 'index.php?controller=usuario&action=registrahotel';
 							break;
 							default:
 								alert(dato);
@@ -247,7 +247,7 @@
 				success: function(dato){
 					switch(dato){
 						case 'true':
-							window.location.href = 'index?controller=usuario&action=registrahotel';
+							window.location.href = 'index.php?controller=usuario&action=registrahotel';
 						break;
 						default:
 							alert(dato);
@@ -265,7 +265,7 @@
 				success: function(dato){
 					switch(dato){
 						case 'true':
-							window.location.href = 'index?controller=usuario&action=registrahotel';
+							window.location.href = 'index.php?controller=usuario&action=registrahotel';
 						break;
 						default:
 							alert(dato);
@@ -319,7 +319,7 @@
 				success: function(dato){
 					switch(dato){
 						case 'true':
-							window.location.href = 'index?controller=usuario&action=registrahotel';
+							window.location.href = 'index.php?controller=usuario&action=registrahotel';
 						break;
 						default:
 							alert(dato);
@@ -351,7 +351,7 @@
 				success: function(dato){
 					switch(dato){
 						case 'true':
-							window.location.href = 'index?controller=usuario&action=registrahotel';
+							window.location.href = 'index.php?controller=usuario&action=registrahotel';
 						break;
 						default:
 							alert(dato);
@@ -369,7 +369,7 @@
 				success: function(dato){
 					switch(dato){
 						case 'true':
-							window.location.href = 'index?controller=usuario&action=registrahotel';
+							window.location.href = 'index.php?controller=usuario&action=registrahotel';
 						break;
 						default:
 							alert(dato);
@@ -386,7 +386,7 @@
 				success: function(dato){
 					switch(dato){
 						case 'true':
-							window.location.href = 'index?controller=usuario&action=mishoteles';
+							window.location.href = 'index.php?controller=usuario&action=mishoteles';
 						break;
 						default:
 							alert(dato);
