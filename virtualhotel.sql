@@ -440,9 +440,9 @@ COMMIT;
 
 ALTER TABLE `habitaciones` ADD `num_cama` INT(10) NOT NULL AFTER `tipo_habitacion`, ADD `precio` DOUBLE NOT NULL AFTER `num_cama`;
 
-INSERT INTO `pais` (`id_pais`, `nombre_p`) VALUES (NULL, 'Mexico');
-INSERT INTO `estado` (`id_estado`, `nombre`, `id_pais`) VALUES (NULL, 'Estado de Mexico', '1');
-INSERT INTO `estado` (`id_estado`, `nombre`, `id_pais`) VALUES (NULL, 'Jalisco', '1');
-INSERT INTO `servicios` (`id_servicio`, `nombre`, `disponibilidad_hot`, `disponibilidad_hab`) VALUES (NULL, 'alberca', b'1', ''), (NULL, 'bar', b'1', '');
-INSERT INTO `servicios` (`id_servicio`, `nombre`, `disponibilidad_hot`, `disponibilidad_hab`) VALUES (NULL, 'minibar', b'0', b'1'), (NULL, 'jacuzzi', b'0', b'1');
-INSERT INTO `tipo_habitacion` (`id_tipo`, `descripcion`) VALUES (NULL, 'Sencilla'), (NULL, 'Doble');
+INSERT INTO `pais` ( `nombre_p`) VALUES ( 'Mexico');
+INSERT INTO `estado` ( `nombre`, `id_pais`) VALUES ( 'Estado de Mexico', '1');
+INSERT INTO `estado` ( `nombre`, `id_pais`) VALUES ( 'Jalisco', '1');
+INSERT INTO `servicios` ( `nombre`, `disponibilidad_hot`, `disponibilidad_hab`) VALUES ( 'alberca', b'1', ''), ( 'bar', b'1', '');
+INSERT INTO `servicios` ( `nombre`, `disponibilidad_hot`, `disponibilidad_hab`) VALUES ( 'minibar', b'0', b'1'), ( 'jacuzzi', b'0', b'1');
+INSERT INTO `tipo_habitacion` ( `descripcion`) VALUES ( 'Sencilla'), ( 'Doble');
