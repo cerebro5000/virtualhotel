@@ -63,7 +63,6 @@
 			}
 			$this->model = $_SESSION['session'];
 			$user = $this->model;
-			print_r($_SESSION);
 			$paso1 = 'active';
 			$paso2 = '';
 			$paso3 = '';
