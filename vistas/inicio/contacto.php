@@ -8,7 +8,7 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Telefono</label>
-						<input type="number" class="form-control" id="tel" name="tel">
+						<input type="text" class="form-control" id="tel" name="tel">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Correo electronico</label>
@@ -19,7 +19,7 @@
 						<textarea id="comentario" class="form-control" name="comentario"></textarea>
 					</div>
 					
-					<input type="submit" class="btn btn-primary" value="Enviar">				
+					<button id="enviar" type="submit" class="btn btn-primary">Enviar</button>				
 			</div>
 			<div class="col-lg-6"><img src="img/fondo feo.jpg" width="100%"></div>
 		</div>
@@ -28,18 +28,9 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#registroform').click(function(event){
-			if ($('#usuarioR').val() == "" ) {
-				alert('usuario vacio');
-			}
-			else if($('#passR').val() == "" && $('#repass').val() == ""){
-				alert('contraseña vacia escriba una');
-			}
-			else if($('#nombre').val() == ""){
-				alert('nombre vacio escriba uno');
-			}
-			else if($('#apellido').val() == ""){
-				alert('apellidos vacio escriba uno');
+		$('#enviar').click(function(event){
+			if ($('#nombre').val() == "" ) {
+				alert('Nombre vacio');
 			}
 			else if($('#tel').val() == ""){
 				alert('Telefono vacio escriba uno');
@@ -47,6 +38,10 @@
 			else if($('#email').val() == ""){
 				alert('correo electronico vacio escriba uno');
 			}
+			else if($('#comentario').val() == ""){
+				alert('comentario vacio escriba uno');
+			}
+			
 			else{
 				event.preventDefault();
 				$.post('index.php?controller=usuario&action=validar',

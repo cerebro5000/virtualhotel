@@ -55,6 +55,22 @@
 			
 		}	
 		
+		public function reservaciones()
+		{
+			if (!isset($_SESSION['session'])) {
+				header("Location: index.php?controller=inicio&action=inicio");
+				exit();
+			}
+			$this->model = $_SESSION['session'];
+			$user = $this->model;
+			
+			require_once('vistas/header.php');
+			require_once('vistas/usuario/menu.php');
+			require_once('vistas/usuario/reservaciones.php');
+			require_once('vistas/footer.php');
+			
+		}	
+		
 		public function registrahotel()
 		{
 			if (!isset($_SESSION['session'])) {
@@ -231,7 +247,11 @@
 			$user = $this->model;
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
+			require_once('vistas/usuario/mishoteles.php');
 			require_once('vistas/footer.php');
+			
+			$this->hotel = new MihotelModel();
+			$hoteles = $this->hotel->gethoteles();
 		}
 		public function update(){
 			echo 'update desde UsuarioConroller';
