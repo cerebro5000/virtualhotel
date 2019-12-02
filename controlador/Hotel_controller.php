@@ -157,12 +157,13 @@ class HotelController extends Controller
 
 	public function publicar()
 	{
-		$this->model = $this->session->getsession()['hotel'];
-		$this->habitacion = $this->session->getsession()['habitacion'];
+		$session = $this->session->getsession();
+		$this->model = $session['hotel'];
+		$this->habitacion = $session['habitacion'];
 		$errorhot = $this->model->guardarhotel();
 		$errorhab = $this->habitacion->guardarHabitaciones($this->model->getid());
 		if ($errorhot !== 0 && $errorhab !== 0) {
-			json_encode(array('hotel' => $errorhot, 'habitacion' => $errorhab));
+			echo json_encode(array('hotel' => $errorhot, 'habitacion' => $errorhab));
 		}
 		else{
 			$this->session->unsetsesion('hotel');

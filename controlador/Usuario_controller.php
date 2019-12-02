@@ -3,8 +3,8 @@
 	class UsuarioController extends Controller
 	{	
 		public $session;
-		public $hotel;
 		public $habitacion;
+		public $hotel;
 
 		public function __construct(){
 			
@@ -17,8 +17,10 @@
 				header("Location: index.php?controller=inicio&action=inicio");
 				exit();
 			}
-			$this->model = $_SESSION['session'];
-			$user = $this->model;
+			$this->session = $_SESSION['session'];
+			$user = $this->session;
+			$this->hotel = new HotelModel();
+			$hoteles = $this->hotel->getHotelesTotales();
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
 			require_once('vistas/usuario/index.php');
@@ -30,8 +32,8 @@
 				header("Location: index.php?controller=inicio&action=inicio");
 				exit();
 			}
-			$this->model = $_SESSION['session'];
-			$user = $this->model;
+			$this->session = $_SESSION['session'];
+			$user = $this->session;
 			
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
@@ -45,8 +47,8 @@
 				header("Location: index.php?controller=inicio&action=inicio");
 				exit();
 			}
-			$this->model = $_SESSION['session'];
-			$user = $this->model;
+			$this->session = $_SESSION['session'];
+			$user = $this->session;
 			
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
@@ -61,8 +63,8 @@
 				header("Location: index.php?controller=inicio&action=inicio");
 				exit();
 			}
-			$this->model = $_SESSION['session'];
-			$user = $this->model;
+			$this->session = $_SESSION['session'];
+			$user = $this->session;
 			
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
@@ -77,8 +79,8 @@
 				header("Location: index.php?controller=inicio&action=inicio");
 				exit();
 			}
-			$this->model = $_SESSION['session'];
-			$user = $this->model;
+			$this->session = $_SESSION['session'];
+			$user = $this->session;
 			$paso1 = 'active';
 			$paso2 = '';
 			$paso3 = '';
@@ -93,7 +95,7 @@
 					$paso2 = '';
 					$paso3 = 'active';
 					$paso4 = '';
-					if ($_SESSION['habitacion']->imagen !== null) {
+					if (!empty($_SESSION['habitacion']->imagen)) {
 						$paso1 = '';
 						$paso2 = '';
 						$paso3 = '';
@@ -243,15 +245,18 @@
 				header("Location: index.php?controller=inicio&action=inicio");
 				exit();
 			}
-			$this->model = $_SESSION['session'];
-			$user = $this->model;
+			$this->session = $_SESSION['session'];
+			$user = $this->session;
+
+			$this->hotel = new HotelModel();
+			$hoteles = $this->hotel->getMyHotel($user->id);
+
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
 			require_once('vistas/usuario/mishoteles.php');
 			require_once('vistas/footer.php');
 			
-			$this->hotel = new MihotelModel();
-			$hoteles = $this->hotel->gethoteles();
+			
 		}
 		public function update(){
 			echo 'update desde UsuarioConroller';

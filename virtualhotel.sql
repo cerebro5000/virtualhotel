@@ -108,7 +108,7 @@ CREATE TABLE `hotel_servicios_rel` (
 
 CREATE TABLE `imagenes_habitacion` (
   `id_habitacion` int(11) NOT NULL,
-  `ruta_imagen` int(11) NOT NULL
+  `ruta_imagen` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -119,7 +119,7 @@ CREATE TABLE `imagenes_habitacion` (
 
 CREATE TABLE `imagenes_hotel` (
   `id_hotel` int(11) NOT NULL,
-  `ruta_imagen` int(11) NOT NULL
+  `ruta_imagen` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

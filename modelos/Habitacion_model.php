@@ -166,7 +166,7 @@ class HabitacionModel extends Model
 			}
 		}
 		foreach ($this->imagen as $key => $value) {
-			$sqlimagen = "INSERT INTO imagenes_hotel (id_habitacion , ruta_imagen) values ('{$idhab}', '".UPLOADHABI."{$value['name']}')";
+			$sqlimagen = "INSERT INTO imagenes_hotel (id_habitacion , ruta_imagen) values ('{$idhab}', '{$value['name']}')";
 			if ($mysqli->query($sqlimagen)) {
 			}else{
 				$error = 4;
