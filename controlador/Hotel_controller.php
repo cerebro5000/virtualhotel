@@ -170,10 +170,19 @@ class HotelController extends Controller
 			$this->session->unsetsesion('habitacion');
 			echo 'true';
 		}
-		
+	}
 
-
-		
+	public function see()
+	{
+		if ($_POST != '') {
+			if ($_POST['it'] != '') {
+				$this->session->addtosession('see', $_POST['it']);
+				echo 'true';
+			}
+		}
+		else{
+			echo 'invalid';
+		}
 	}
 	public function error(){
 		echo "un error acaba de ocurrir";

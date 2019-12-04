@@ -258,6 +258,22 @@
 			
 			
 		}
+
+		public function hotel()
+		{
+			if (!isset($_SESSION['session'])) {
+				header("Location: index.php?controller=inicio&action=inicio");
+				exit();
+			}
+			$this->session = $_SESSION['session'];
+			$user = $this->session;
+
+			require_once('vistas/header.php');
+			require_once('vistas/usuario/menu.php');
+			require_once('vistas/usuario/hotel.php');
+			require_once('vistas/footer.php');
+
+		}
 		public function update(){
 			echo 'update desde UsuarioConroller';
 

@@ -19,10 +19,32 @@
 				<hr>
 				<div class="card-body">
 					<input type="text" name="" hidden="true" value="<?php echo $value['id_hotel']; ?>">
-					<button class="btn btn-outline-primary">Ver Hotel</button>
+					<button class="btn btn-outline-primary" id="seehotel">Ver Hotel</button>
 				</div>
 			</div>
 		</div>
 		<?php endforeach; ?>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('button[id="seehotel"]').click(function(event){
+			var input = $(this).parent('.card-body').children('input').get(0);
+			$.ajax({
+				url: 'index.php?controller=hotel&action=see',
+				data: {it : input.value },
+				type: 'POST',
+				success: function(dato){
+					switch(dato){
+						case 'true':
+							window.location.href = 'index.php?controller=usuario&action=hotel';
+						break;
+						default:
+							alert('hotel no disponible');
+						break;
+					}
+				}
+			});
+		});
+	});
+</script>
