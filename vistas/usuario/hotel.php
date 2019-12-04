@@ -54,6 +54,7 @@
 						<br>
 						<b><?php foreach($habitaciones as $key => $value):?>
 						<?php echo $value['descripcion'];?>
+						
 						<?php endforeach; ?></b>
 						
 						<br>

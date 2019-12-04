@@ -299,7 +299,29 @@ class HotelModel extends Model
 		$mysqli->close();
 		return $datos;
 	}
+	
+		public function getHotelesTotales2()
+	{
+		$coneccion = new Conexion();
+		$mysqli = $coneccion->conectar();
+		$result = $mysqli->query("SELECT * from hotel");
+		$datos = array();
+		while($row = $result->fetch_assoc()){
+			$imagenes = array();
+			$resultimg = $mysqli->query("SELECT * from imagenes_hotel where id_hotel = {$row['id_hotel']}");
+			while ($rowimg = $resultimg->fetch_assoc()) {
+				$imagenes[] = $rowimg['ruta_imagen'];
+			}
+			$datos[] = ['id_hotel' =>$row['id_hotel'], 
+			'nombre' =>$row['nombre'], 'direccion' =>$row ['direccion'],
+			'email' =>$row ['email'], 'telefono' =>$row ['telefono'],
+			'imagen' => $imagenes];
 
+		}
+		$mysqli->close();
+		return $datos;
+	}
+	
 	public function getMyHotel($id)
 	{
 		$coneccion = new Conexion();
@@ -309,13 +331,30 @@ class HotelModel extends Model
 		while($hotel = $result->fetch_assoc()){
 			if ($result2 = $mysqli->query("SELECT * from hotel where id_hotel = {$hotel['id_hotel']}")) {
 				$row = $result2->fetch_assoc();
-				$datos[] = array('id_hotel' =>$row['id_hotel'],
+
+				$resultimg = $mysqli->query("SELECT * from imagenes_hotel where id_hotel = {$row['id_hotel']}");
+				while ($rowimg = $resultimg->fetch_assoc()) {
+				$imagenes[] = $rowimg['ruta_imagen'];
+			}
+				
+				$datos[] = ['id_hotel' =>$row['id_hotel'],
 					'nombre' => $row['nombre'],
 					'direccion' =>$row ['direccion'],
 					'email' =>$row ['email'],
-					'telefono' =>$row ['telefono']);
+					'telefono' =>$row ['telefono'],
+					'imagen' => $imagenes];
 			}
 		}
+		$mysqli->close();
+		return $datos;
+	}
+
+	public function eliminarhotel()
+	{
+		$conexion = new Conexion();
+		$mysqli = $conexion->conectar();
+		$result = $mysqli->query("DELETE *FROM hotel WHERE id_hotel={$hotel['id_hotel=4']}");
+
 		$mysqli->close();
 		return $datos;
 	}
