@@ -22,25 +22,12 @@ class HabitacionModel extends Model
 		$result = $mysqli->query("SELECT * from servicios where disponibilidad_hab = 1");
 		$datos = array();
 		while($row = $result->fetch_assoc()){
-			$datos[] = ['id_servicio' =>$row['id_servicio'], 'nombre' => $row['nombre']];
+			$datos[] = ['id_servicios' =>$row['id_servicios'], 'nombre' => $row['nombre']];
 		}
 		return $datos;
 	}
 
-	public function gethabitaciontotal()
-	{
-		$coneccion = new Conexion();
-		$mysqli = $coneccion->conectar();
-		$result = $mysqli->query("SELECT * from habitaciones");
-		$datos = array();
-		while($row = $result->fetch_assoc()){
-			$datos[] = ['id_habitacion' =>$row['id_habitacion'], 'id_hotel' => $row['id_hotel'], 
-			'tipo_habitacion' =>$row['tipo_habitacion'], 'num_cama' =>$row['num_cama'], 'precio' =>$row['precio']];
-		}
-		return $datos;
-	}
-	
-		public function gettipohabitaciontotal()
+	public function gettipohabitaciontotal()
 	{
 		$coneccion = new Conexion();
 		$mysqli = $coneccion->conectar();

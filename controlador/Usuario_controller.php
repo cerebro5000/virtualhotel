@@ -267,15 +267,6 @@
 			}
 			$this->session = $_SESSION['session'];
 			$user = $this->session;
-			
-			$this->hotel = new HotelModel();
-			$this->habitacion = new HabitacionModel();
-			$hoteles = $this->hotel->getHotelesTotales();
-			$servicio = $this->hotel->getserviciosTotales();
-			$servicios = $this->habitacion->getserviciosTotales();
-			$habitaciones = $this->habitacion->gettipohabitaciontotal();
-			$habitacion = $this->habitacion->gethabitaciontotal();
-			
 
 			require_once('vistas/header.php');
 			require_once('vistas/usuario/menu.php');
